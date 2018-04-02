@@ -14,16 +14,34 @@
 </head>
 
 <body>
-    <div class="ui grid">
-        <button class="ui button one wide column" id="manaButton">Mana</button>
-        <div class="ui progress three wide column" id="manaBar">
+    <div class="ui grid" id="manaGrid">
+        <button class="ui button two wide column" id="manaButton">Mana</button>
+        <div class="ui progress four wide column" id="manaBar">
             <div class="bar">
                 <div class="progress"></div>
             </div>
         </div>
+        <div class="ui segment one wide column" id="manaTotal"></div>
+        <div class="ui button two wide column" id="manaUpButton">
+            <br>
+            <div>Mana Per: <span id="manaPer"></span></div>
+            <div>Cost: <span id="manaUpCost">5</span></div>
+        </div>
     </div>
-    <div class="ui grid">
-        <button class="ui button">Familiar</button>
+    <div class="ui grid" id="rituGrid">
+        <button class="ui button two wide column" id="rituButton">Rituals
+            <br><p>Mana Cost:</p>
+            <span id='rituManaCost'>10</span>
+        </button>
+        <div class="ui progress four wide column" id="rituBar">
+            <div class="bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+        <div class="ui segment one wide column" id="rituTotal"></div>
+    </div>
+    <div class="ui grid" id="famiGrid">
+        <button class="ui button" id="famiButton">Familiar</button>
     </div>
 </body>
 
