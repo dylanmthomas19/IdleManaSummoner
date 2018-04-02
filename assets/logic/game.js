@@ -1,27 +1,30 @@
 $(function () {
     var mana = 0;
     var manaUp = 1;
+    var manaStorage = 20;
     $('#manaUpButton').hide()
+    $('#manaStorageUp').hide()
     $('#rituGrid').hide()
     $('#famiGrid').hide()
     $('#manaTotal').text(mana)
+    $('#manaStorage').text(manaStorage)
     $('#manaPer').text(manaUp)
     $('#manaButton')
         .on('click', function () {
             clearInterval(window.manaProgress)
             $('#manaBar').progress('reset')
-
-            window.manaProgress = setInterval(function () {
-                $('#manaBar').progress('increment', 20)
-                if ($('#manaBar').progress('is complete')) {
-                    clearInterval(window.manaProgress)
-                    mana += manaUp
-                    $('#manaTotal').text(mana)
-                }
-            }, 5)
-            if (mana >= 20) {
-                $('#rituGrid').show()
-                $('#rituTotal').text(rituals)
+            if (mana < manaStorage) {
+                window.manaProgress = setInterval(function () {
+                    $('#manaBar').progress('increment', 20)
+                    if ($('#manaBar').progress('is complete')) {
+                        clearInterval(window.manaProgress)
+                        mana += manaUp
+                        if (mana > manaStorage) {
+                            mana = manaStorage
+                        }
+                        $('#manaTotal').text(mana)
+                    }
+                }, 5)
             }
             if (mana >= 5) {
                 $('#manaUpButton').show()
@@ -30,6 +33,14 @@ $(function () {
     $(document)
         .on('click', '#manaUpButton', function () {
             var manaCost = 5;
+            if (manaUp >= 5) {
+                manaCost = 10
+                $('#rituGrid').show()
+                $('#rituTotal').text(rituals)
+            }
+            if (manaUp >= 10) {
+                manaCost = 20
+            }
             $('#manaUpCost').text(manaCost)
             if (mana >= manaCost) {
                 mana -= manaCost;
@@ -37,10 +48,24 @@ $(function () {
                 manaUp++;
                 $('#manaPer').text(manaUp)
             }
-            if (manaUp == 5) {
-                manaCost = 10;
+        })
+    var rituCost = 1;
+    $('#manaStorageUp')
+        .on('click', function () {
+            if (rituals >= rituCost) {
+                rituals -= rituCost
+                $('#rituTotal').text(rituals)
+                if (rituCost == 1) {
+                    rituCost += 4
+                } else {
+                    rituCost += 5;
+                }
+                manaStorage += manaStorage
+                $('#manaStorage').text(manaStorage)
+                $('#storageCost').text(rituCost)
             }
         })
+
     var rituals = 0
     var ritualUp = 1
     $('#rituButton')
@@ -58,16 +83,25 @@ $(function () {
                         clearInterval(window.rituProgress)
                         rituals += ritualUp
                         $('#rituTotal').text(rituals)
+                        idlemana()
                     }
                 }, 10)
             }
-            idlemana()
+            $('#manaStorageUp').show()
+
         })
     function idlemana() {
+        clearInterval(window.manaInterval)
         var manaRate = rituals * .5
         window.manaInterval = setInterval(function () {
-            mana = mana + manaRate
-            $('#manaTotal').text(mana)
+            if (mana < manaStorage) {
+                mana = mana + manaRate
+                $('#manaTotal').text(mana)
+            }
+            if (mana > manaStorage) {
+                mana = manaStorage
+                $('#manaTotal').text(mana)
+            }
         }, 1000)
     }
 
