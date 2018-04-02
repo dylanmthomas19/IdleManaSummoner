@@ -17,35 +17,80 @@
     <div class="ui grid" id="manaGrid">
         <button class="ui button two wide column" id="manaButton">Mana</button>
         <div class="ui progress four wide column" id="manaBar">
-            <div class="bar">
-                <div class="progress"></div>
-            </div>
+            <div class="bar"></div>
         </div>
-        <div class="ui segment two wide column"><span id="manaTotal"></span> / <span id="manaStorage"></span></div>
+        <div class="ui segment two wide column">
+            <span id="manaTotal"></span> /
+            <span id="manaStorage"></span>
+        </div>
         <div class="ui button two wide column" id="manaUpButton">
             <br>
-            <div>Mana Per: <span id="manaPer"></span></div>
-            <div>Cost: <span id="manaUpCost">5</span></div>
+            <div>Mana Per:
+                <span id="manaPer"></span>
+            </div>
+            <div>Cost:
+                <span id="manaUpCost">5</span>
+            </div>
         </div>
         <div class="ui button two wide column" id="manaStorageUp">
             <br>
-            <div>Ritual Cost: <span id="storageCost">1</span></div>
+            <div>Ritual Cost:
+                <span id="storageCost">1</span>
+            </div>
         </div>
     </div>
     <div class="ui grid" id="rituGrid">
         <button class="ui button two wide column" id="rituButton">Rituals
-            <br><p>Mana Cost:</p>
+            <br>
+            <p>Mana Cost:</p>
             <span id='rituManaCost'>10</span>
         </button>
         <div class="ui progress four wide column" id="rituBar">
-            <div class="bar">
-                <div class="progress"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="ui segment two wide column">
+            <span id="rituTotal"></span> /
+            <span id="rituStorage"></span>
+        </div>
+        <div class="ui button two wide column" id="rituUpButton">
+            <br>
+            <div>Rituals Per:
+                <span id="rituPer">1</span>
+            </div>
+            <div>Cost:
+                <span>Familiars: </span>
+                <span id="famiCost">1</span>
+                <br>
+                <span>Mana: </span>
+                <span id="manaCost">50</span>
             </div>
         </div>
-        <div class="ui segment one wide column" id="rituTotal"></div>
+        <div class="ui button two wide column" id="rituStorageUp">
+            <br>
+            <div>Familiar Cost:
+                <span id="rituStorageFamiCost">1</span>
+            </div>
+        </div>
+
     </div>
     <div class="ui grid" id="famiGrid">
-        <button class="ui button" id="famiButton">Familiar</button>
+        <button class="ui button two wide column" id="famiButton">Familiar
+            <br>
+            <p>Cost:</p>
+            <p>Mana:
+                <span id="famiManaCost">100</span>
+            </p>
+            <p>Rituals:
+                <span id="famiRituCost">5</span>
+            </p>
+        </button>
+        <div class="ui progress four wide column" id="famiBar">
+            <div class="bar"></div>
+        </div>
+        <div class="ui segment two wide column">
+            <span id="famiTotal"></span> /
+            <span id="famiStorage"></span>
+        </div>
     </div>
 </body>
 
