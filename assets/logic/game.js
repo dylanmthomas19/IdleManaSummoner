@@ -32,21 +32,20 @@ $(function () {
                 $('#manaUpButton').show()
             }
         })
-    $(document)
-        .on('click', '#manaUpButton', function () {
-            var manaCost = 5;
+    var manaRateCost = 5
+    $('#manaUpButton')
+        .on('click', function () {
+            if (manaUp == manaRateCost){
+                manaRateCost += manaRateCost
+                $('#manaUpCost').text(manaRateCost)
+            }
             if (manaUp >= 5) {
-                manaCost = 10
                 $('#rituGrid').show()
                 $('#rituTotal').text(rituals)
                 $('#rituStorage').text(ritualStorage)
-            }
-            if (manaUp >= 10) {
-                manaCost = 20
-            }
-            $('#manaUpCost').text(manaCost)
-            if (mana >= manaCost) {
-                mana -= manaCost;
+            }            
+            if (mana >= manaRateCost) {
+                mana -= manaRateCost;
                 $('#manaTotal').text(mana)
                 manaUp++;
                 $('#manaPer').text(manaUp)
@@ -74,6 +73,7 @@ $(function () {
                 $('#famiStorage').text(famiStorage)
                 $('#rituUpButton').show()
             }
+            idlemana()
         })
 
     var rituals = 0
@@ -106,6 +106,40 @@ $(function () {
             $('#manaStorageUp').show()
 
         })
+    var rituRateManaCost = 50;
+    var rituRateFamiCost = 1;
+    $('#rituUpButton')
+        .on('click', function () {
+
+            if (mana >= rituRateManaCost && familiars >= rituRateFamiCost) {
+                mana -= rituRateManaCost
+                $('#manaTotal').text(mana)
+                familiars -= rituRateFamiCost
+                $('#famiTotal').text(familiars)
+                ritualUp++
+                $('#rituPer').text(ritualUp)
+                rituRateManaCost += 25
+                $('#rituRateManaCost').text(rituRateManaCost)
+                rituRateFamiCost++
+                $('#rituRateFamiCost').text(rituRateFamiCost)
+            }
+            idleRitual()
+        })
+    var rituStorFamiCost = 1;
+    $('#rituStorageUp')
+        .on('click', function () {
+
+            if (familiars >= rituStorFamiCost) {
+                familiars -= rituStorFamiCost
+                $('#famiTotal').text(familiars)
+                rituStorFamiCost++
+                $('#rituStorageFamiCost').text(rituStorFamiCost)
+                ritualStorage += 10
+                $('#rituStorage').text(ritualStorage)
+                idleRitual()
+            }
+            
+        })
     function idlemana() {
         clearInterval(window.manaInterval)
         var manaRate = rituals * .5
@@ -125,18 +159,16 @@ $(function () {
     var famiStorage = 5;
     $('#famiButton')
         .on('click', function () {
-            $('#rituStorageUp').show()
             var manaCost = 100;
             var ritualCost = 5;
             if (mana >= manaCost && rituals >= ritualCost) {
-                console.log("you did it")
+                $('#rituStorageUp').show()
                 mana -= manaCost
                 $('#manaTotal').text(mana)
                 rituals -= ritualCost
                 $('#rituTotal').text(rituals)
                 clearInterval(window.famiProgress)
                 $('#famiBar').progress('reset')
-
                 if (familiars < famiStorage) {
                     window.famiProgress = setInterval(function () {
                         $('#famiBar').progress('increment', 5)
@@ -151,6 +183,7 @@ $(function () {
                         }
                     }, 50)
                 }
+
             }
         })
     function idleRitual() {
@@ -166,7 +199,7 @@ $(function () {
                 $('#rituTotal').text(rituals)
             }
             idlemana()
-            }, 2000)
+        }, 2000)
     }
 
 
