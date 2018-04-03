@@ -14,6 +14,12 @@
 </head>
 
 <body>
+    <h1 class="ui header"> Welcome to Idle Mana Summoner! </h1>
+    <p>By playing, you agree to my using your localStorage for saving game(not private ryan). It's like a cookie, but better. Source code can be found <a href="https://github.com/dylanmthomas19/IdleManaSummoner">here</a>.</p>
+    <div class="ui grid" id="saveGrid">
+        <button class="ui button two wide column" id="saveButton">Save Game</button>
+        <button class="ui button two wide column" id="clearSaveButton">Clear Save</button>
+    </div>
     <div class="ui grid" id="manaGrid">
         <button class="ui button two wide column" id="manaButton">Mana</button>
         <div class="ui progress four wide column" id="manaBar">
@@ -29,13 +35,13 @@
                 <span id="manaPer"></span>
             </div>
             <div>Cost:
-                <span id="manaUpCost">5</span>
+                <span id="manaUpCost"></span>
             </div>
         </div>
         <div class="ui button two wide column" id="manaStorageUp">
             <br>
             <div>Ritual Cost:
-                <span id="storageCost">1</span>
+                <span id="storageCost"></span>
             </div>
         </div>
     </div>
@@ -55,20 +61,21 @@
         <div class="ui button two wide column" id="rituUpButton">
             <br>
             <div>Rituals Per:
-                <span id="rituPer">1</span>
+                <span id="rituPer"></span>
             </div>
             <div>Cost:
+                <br>
                 <span>Familiars: </span>
-                <span id="rituRateFamiCost">1</span>
+                <span id="rituRateFamiCost"></span>
                 <br>
                 <span>Mana: </span>
-                <span id="rituRateManaCost">50</span>
+                <span id="rituRateManaCost"></span>
             </div>
         </div>
         <div class="ui button two wide column" id="rituStorageUp">
             <br>
             <div>Familiar Cost:
-                <span id="rituStorageFamiCost">1</span>
+                <span id="rituStorageFamiCost"></span>
             </div>
         </div>
 
@@ -93,18 +100,19 @@
         </div>
         <div class="ui button two wide column" id="famiUpButton">
             <div>Familiars Per:
-                <span id="famiPer">1</span>
+                <span id="famiPer"></span>
             </div>
             <div>
                 <div>Cost:
+                    <br>
                     <span>Rituals: </span>
-                    <span id="famiRateRituCost">10</span>
+                    <span id="famiRateRituCost"></span>
                 </div>
             </div>
         </div>
         <div class="ui button two wide column" id="famiStorButton">
             <div>Mana Cost:
-                <span id="famiStorManaCost">200</span>
+                <span id="famiStorManaCost"></span>
             </div>
         </div>
     </div>
