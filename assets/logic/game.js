@@ -89,7 +89,7 @@ $(function () {
             }
             $('#manaUpCost').text(manaRateCost)
         })
-    
+
     var manaRateCost = parseInt(localStorage.getItem('manaRateCost'));
     if (manaRateCost === null) {
         manaRateCost = 5
@@ -147,15 +147,15 @@ $(function () {
             idlemana()
         })
 
-    var rituals =parseInt(localStorage.getItem('rituals'));
+    var rituals = parseInt(localStorage.getItem('rituals'));
     if (rituals === null) {
         rituals = 0
     }
-    var ritualUp =parseInt(localStorage.getItem('ritualUp'));
+    var ritualUp = parseInt(localStorage.getItem('ritualUp'));
     if (ritualUp === null) {
         ritualUp = 1
     }
-    var ritualStorage =parseInt(localStorage.getItem('ritualStorage'));
+    var ritualStorage = parseInt(localStorage.getItem('ritualStorage'));
     if (ritualStorage === null) {
         ritualStorage = 10
     }
@@ -235,20 +235,6 @@ $(function () {
             }
 
         })
-    function idlemana() {
-        clearInterval(window.manaInterval)
-        var manaRate = rituals
-        window.manaInterval = setInterval(function () {
-            if (mana < manaStorage) {
-                mana += manaRate
-                $('#manaTotal').text(mana)
-            }
-            if (mana > manaStorage) {
-                mana = manaStorage
-                $('#manaTotal').text(mana)
-            }
-        }, 1000)
-    }
     var familiars = parseInt(localStorage.getItem('familiars'));
     if (familiars === null) {
         familiars = 0
@@ -322,9 +308,23 @@ $(function () {
                 $('#famiStorManaCost').text(famiStorManaCost)
             }
         })
+    function idlemana() {
+        clearInterval(window.manaInterval)
+        var manaRate = rituals*1.5
+        window.manaInterval = setInterval(function () {
+            if (mana < manaStorage) {
+                mana += manaRate
+                $('#manaTotal').text(mana)
+            }
+            if (mana > manaStorage) {
+                mana = manaStorage
+                $('#manaTotal').text(mana)
+            }
+        }, 1000)
+    }
     function idleRitual() {
         clearInterval(window.rituInterval)
-        var rituRate = familiars
+        var rituRate = familiars*.5
         window.rituInterval = setInterval(function () {
             if (rituals < ritualStorage) {
                 rituals += rituRate
@@ -334,8 +334,8 @@ $(function () {
                 rituals = ritualStorage
                 $('#rituTotal').text(rituals)
             }
-            idlemana()
-        }, 2000)
+        }, 1000)
+        idlemana()
     }
 
 
