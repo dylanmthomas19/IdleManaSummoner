@@ -1,7 +1,38 @@
 $(function () {
-    var mana = 0;
-    var manaUp = 1;
-    var manaStorage = 20;
+    function clearSave() {
+        localStorage.setItem('mana', 0)
+        localStorage.setItem('manaUp', 1)
+        localStorage.setItem('manaStorage', 20)
+        localStorage.setItem('manaRateCost', 5)
+        localStorage.setItem('manaStorRituCost', 1)
+
+        localStorage.setItem('rituals', 0)
+        localStorage.setItem('ritualUp', 1)
+        localStorage.setItem('ritualStorage', 10)
+        localStorage.setItem('rituRateManaCost', 50)
+        localStorage.setItem('rituRateFamiCost', 1)
+        localStorage.setItem('rituStorFamiCost', 1)
+
+        localStorage.setItem('familiars', 0)
+        localStorage.setItem('famiUp', 1)
+        localStorage.setItem('famiStorage', 5)
+        localStorage.setItem('famiRateRituCost', 10)
+        localStorage.setItem('famiStorManaCost', 200)
+        window.location.reload()
+    }
+
+    var mana = parseInt(localStorage.getItem('mana'));
+    if (mana === null) {
+        mana = 0
+    }
+    var manaUp = parseInt(localStorage.getItem('manaUp'));
+    if (manaUp === null) {
+        manaUp = 1
+    }
+    var manaStorage = parseInt(localStorage.getItem('manaStorage'));
+    if (manaStorage === null) {
+        manaStorage = 20
+    }
     $('#manaUpButton').hide()
     $('#manaStorageUp').hide()
     $('#rituGrid').hide()
@@ -13,6 +44,29 @@ $(function () {
     $('#manaTotal').text(mana)
     $('#manaStorage').text(manaStorage)
     $('#manaPer').text(manaUp)
+    $('#saveButton')
+        .on('click', function () {
+            localStorage.setItem('mana', mana)
+            localStorage.setItem('manaUp', manaUp)
+            localStorage.setItem('manaStorage', manaStorage)
+            localStorage.setItem('manaRateCost', manaRateCost)
+            localStorage.setItem('manaStorRituCost', manaStorRituCost)
+
+            localStorage.setItem('rituals', rituals)
+            localStorage.setItem('ritualUp', ritualUp)
+            localStorage.setItem('ritualStorage', ritualStorage)
+            localStorage.setItem('rituRateManaCost', rituRateManaCost)
+            localStorage.setItem('rituRateFamiCost', rituRateFamiCost)
+            localStorage.setItem('rituStorFamiCost', rituStorFamiCost)
+
+            localStorage.setItem('familiars', familiars)
+            localStorage.setItem('famiUp', famiUp)
+            localStorage.setItem('famiStorage', famiStorage)
+            localStorage.setItem('famiRateRituCost', famiRateRituCost)
+            localStorage.setItem('famiStorManaCost', famiStorManaCost)
+        })
+    $('#clearSaveButton')
+        .on('click', clearSave)
     $('#manaButton')
         .on('click', function () {
             clearInterval(window.manaProgress)
@@ -33,8 +87,13 @@ $(function () {
             if (mana >= 5) {
                 $('#manaUpButton').show()
             }
+            $('#manaUpCost').text(manaRateCost)
         })
-    var manaRateCost = 5
+
+    var manaRateCost = parseInt(localStorage.getItem('manaRateCost'));
+    if (manaRateCost === null) {
+        manaRateCost = 5
+    }
     $('#manaUpButton')
         .on('click', function () {
             if (manaUp == manaRateCost) {
@@ -54,36 +113,52 @@ $(function () {
             }
         })
 
-    var rituCost = 1;
+    var manaStorRituCost = parseInt(localStorage.getItem('manaStorRituCost'));
+    if (manaStorRituCost === null) {
+        manaStorRituCost = 1
+    }
     $('#manaStorageUp')
         .on('click', function () {
-            if (rituals >= rituCost) {
-                rituals -= rituCost
+            if (rituals >= manaStorRituCost) {
+                rituals -= manaStorRituCost
                 $('#rituTotal').text(rituals)
-                if (rituCost == 1) {
-                    rituCost += 4
+                if (manaStorRituCost == 1) {
+                    manaStorRituCost += 4
                 } else {
-                    rituCost += 5;
+                    manaStorRituCost += 5;
                 }
                 manaStorage += manaStorage
                 $('#manaStorage').text(manaStorage)
-                $('#storageCost').text(rituCost)
+                $('#storageCost').text(manaStorRituCost)
             }
             if (manaStorage >= 40) {
                 $('#famiGrid').show()
                 $('#famiTotal').text(familiars)
                 $('#famiStorage').text(famiStorage)
                 $('#rituUpButton').show()
+                $('#rituPer').text(ritualUp)
+                $('#rituRateFamiCost').text(rituRateFamiCost)
+                $('#rituRateManaCost').text(rituRateManaCost)
             }
             if (manaStorage >= 300) {
                 $('#famiStorButton').show()
+                $('#famiStorManaCost').text(famiStorManaCost)
             }
             idlemana()
         })
 
-    var rituals = 0
-    var ritualUp = 1
-    var ritualStorage = 10
+    var rituals = parseInt(localStorage.getItem('rituals'));
+    if (rituals === null) {
+        rituals = 0
+    }
+    var ritualUp = parseInt(localStorage.getItem('ritualUp'));
+    if (ritualUp === null) {
+        ritualUp = 1
+    }
+    var ritualStorage = parseInt(localStorage.getItem('ritualStorage'));
+    if (ritualStorage === null) {
+        ritualStorage = 10
+    }
     $('#rituButton')
         .on('click', function () {
             var manaCost = 10;
@@ -109,10 +184,17 @@ $(function () {
                 }
             }
             $('#manaStorageUp').show()
+            $('#storageCost').text(manaStorRituCost)
 
         })
-    var rituRateManaCost = 50;
-    var rituRateFamiCost = 1;
+    var rituRateManaCost = parseInt(localStorage.getItem('rituRateManaCost'));
+    if (rituRateManaCost === null) {
+        rituRateManaCost = 50
+    }
+    var rituRateFamiCost = parseInt(localStorage.getItem('rituRateFamiCost'));
+    if (rituRateFamiCost === null) {
+        rituRateFamiCost = 1
+    }
     $('#rituUpButton')
         .on('click', function () {
 
@@ -130,7 +212,10 @@ $(function () {
             }
             idleRitual()
         })
-    var rituStorFamiCost = 1;
+    var rituStorFamiCost = parseInt(localStorage.getItem('rituStorFamiCost'));
+    if (rituStorFamiCost === null) {
+        rituStorFamiCost = 1
+    }
     $('#rituStorageUp')
         .on('click', function () {
 
@@ -145,32 +230,30 @@ $(function () {
             }
             if (ritualStorage >= 20) {
                 $('#famiUpButton').show()
+                $('#famiPer').text(famiUp)
+                $('#famiRateRituCost').text(famiRateRituCost)
             }
 
         })
-    function idlemana() {
-        clearInterval(window.manaInterval)
-        var manaRate = rituals * .5
-        window.manaInterval = setInterval(function () {
-            if (mana < manaStorage) {
-                mana += manaRate
-                $('#manaTotal').text(mana)
-            }
-            if (mana > manaStorage) {
-                mana = manaStorage
-                $('#manaTotal').text(mana)
-            }
-        }, 500)
+    var familiars = parseInt(localStorage.getItem('familiars'));
+    if (familiars === null) {
+        familiars = 0
     }
-    var familiars = 0;
-    var famiUp = 1;
-    var famiStorage = 5;
+    var famiUp = parseInt(localStorage.getItem('famiUp'));
+    if (famiUp === null) {
+        famiUp = 1
+    }
+    var famiStorage = parseInt(localStorage.getItem('famiStorage'));
+    if (famiStorage === null) {
+        famiStorage = 5
+    }
     $('#famiButton')
         .on('click', function () {
             var manaCost = 100;
             var ritualCost = 5;
             if (mana >= manaCost && rituals >= ritualCost) {
                 $('#rituStorageUp').show()
+                $('#rituStorageFamiCost').text(rituStorFamiCost)
                 mana -= manaCost
                 $('#manaTotal').text(mana)
                 rituals -= ritualCost
@@ -194,7 +277,10 @@ $(function () {
 
             }
         })
-    var famiRateRituCost = 10;
+    var famiRateRituCost = parseInt(localStorage.getItem('famiRateRituCost'));
+    if (famiRateRituCost === null) {
+        famiRateRituCost = 10
+    }
     $('#famiUpButton')
         .on('click', function () {
             if (rituals >= famiRateRituCost) {
@@ -207,7 +293,10 @@ $(function () {
                 idlemana()
             }
         })
-    var famiStorManaCost = 200;
+    var famiStorManaCost = parseInt(localStorage.getItem('famiStorManaCost'));
+    if (famiStorManaCost === null) {
+        famiStorManaCost = 200
+    }
     $('#famiStorButton')
         .on('click', function () {
             if (mana >= famiStorManaCost) {
@@ -219,9 +308,23 @@ $(function () {
                 $('#famiStorManaCost').text(famiStorManaCost)
             }
         })
+    function idlemana() {
+        clearInterval(window.manaInterval)
+        var manaRate = rituals*1.5
+        window.manaInterval = setInterval(function () {
+            if (mana < manaStorage) {
+                mana += manaRate
+                $('#manaTotal').text(mana)
+            }
+            if (mana > manaStorage) {
+                mana = manaStorage
+                $('#manaTotal').text(mana)
+            }
+        }, 1000)
+    }
     function idleRitual() {
         clearInterval(window.rituInterval)
-        var rituRate = familiars
+        var rituRate = familiars*.5
         window.rituInterval = setInterval(function () {
             if (rituals < ritualStorage) {
                 rituals += rituRate
@@ -231,8 +334,8 @@ $(function () {
                 rituals = ritualStorage
                 $('#rituTotal').text(rituals)
             }
-            idlemana()
-        }, 2000)
+        }, 1000)
+        idlemana()
     }
 
 
