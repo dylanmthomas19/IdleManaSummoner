@@ -320,7 +320,7 @@ $(function () {
                 mana = manaStorage
                 $('#manaTotal').text(mana)
             }
-        }, 1000)
+        }, 500)
     }
     function idleRitual() {
         clearInterval(window.rituInterval)
@@ -334,8 +334,9 @@ $(function () {
                 rituals = ritualStorage
                 $('#rituTotal').text(rituals)
             }
+            idlemana()
         }, 1000)
-        idlemana()
+        
     }
 
 
