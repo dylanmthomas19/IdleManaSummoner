@@ -16,12 +16,160 @@
 <body>
     <h1 class="ui header"> Welcome to Idle Mana Summoner! </h1>
     <p>If you see "NaN/NaN", click "Clear save"</p>
-    <p>By playing, you agree to my using your localStorage for saving game(not private ryan). It's like a cookie, but better. Source code can be found <a href="https://github.com/dylanmthomas19/IdleManaSummoner">here</a>.</p>
+    <p>By playing, you agree to my using your localStorage for saving game(not private ryan). It's like a cookie, but better.
+        Source code can be found
+        <a href="https://github.com/dylanmthomas19/IdleManaSummoner">here</a>.</p>
+    <p>Returning players, click on Load Save</p>
     <p>Play by clicking on "Mana". More buttons will appear when you're ready...</p>
     <div class="ui grid" id="saveGrid">
         <button class="ui button two wide column" id="saveButton">Save Game</button>
+        <button class="ui button two wide column" id="loadSaveButton">Load Game</button>
         <button class="ui button two wide column" id="clearSaveButton">Clear Save</button>
     </div>
+    <br>
+    <div class="ui gride">
+        <div class="ui segment four wide column" id="affinitySegment">
+            <h4 class="ui header">Your Affinity:</h4>
+            <p id="affinity"></p>
+        </div>
+    </div>
+    <!--Affinity Quiz-->
+    <div class="ui modal" id="affinityIntro">
+        <div class="header">Well Done...</div>
+        <div class="content">
+            <p>Your growing power has gained the attention of the many immortal beings...</p>
+            <p>Answer their questions, and gain the power they offer...</p>
+        </div>
+        <div class="actions">
+            <div class="ui approve button" id="affinityGo">I agree</div>
+        </div>
+    </div>
+    <!--Law vs Chaos Question-->
+    <div class="ui modal" id="q1">
+        <div class="header">I am Corellon...</div>
+        <div class="content">
+            <p>What Music scores your summonings?</p>
+        </div>
+        <div class="actions">
+            <div class="ui approve button q1a" id="q1a1" data-val="classical">Classical</div>
+            <div class="ui approve button q1a" id="q1a2" data-val="electronica">Electronica</div>
+            <div class="ui approve button q1a" id="q1a3" data-val="punk">Punk</div>
+        </div>
+    </div>
+    <!--Good vs Evil Question-->
+    <div class="ui modal" id="q2">
+        <div class="header">I AM TIAMAT...</div>
+        <div class="content">
+            <p>WHAT DO YOU DESIRE?</p>
+        </div>
+        <div class="actions">
+            <div class="ui approve button q2a" id="q2a1" data-val="change">Change</div>
+            <div class="ui approve button q2a" id="q2a2" data-val="domination">Domination</div>
+            <div class="ui approve button q2a" id="q2a3" data-val="justice">Justice</div>
+        </div>
+    </div>
+    <!--Good vs Evil Question-->
+    <div class="ui modal" id="q3">
+        <div class="header">I am Sehanine...</div>
+        <div class="content">
+            <p>What are you hiding?</p>
+        </div>
+        <div class="actions">
+            <div class="ui approve button q3a" id="q3a1" data-val="choices">My Choices</div>
+            <div class="ui approve button q3a" id="q3a2" data-val="mistakes">My Mistakes</div>
+            <div class="ui approve button q3a" id="q3a3" data-val="past">My Past</div>
+        </div>
+    </div>
+    <!--Law vs Chaos Question-->
+    <div class="ui modal" id="q4">
+        <div class="header">I am Bahamut...</div>
+        <div class="content">
+            <p>Who are you protecting?</p>
+        </div>
+        <div class="actions">
+            <div class="ui approve button q4a" id="q4a1" data-val="noone">No One</div>
+            <div class="ui approve button q4a" id="q4a2" data-val="myself">Myself</div>
+            <div class="ui approve button q4a" id="q4a3" data-val="family">My Family</div>
+        </div>
+    </div>
+    <!--Law vs Chaos Question-->
+    <div class="ui modal" id="q5">
+        <div class="header">I am Zehir...</div>
+        <div class="content">
+            <p>You find several people in cages, their clothes in rags...</p>
+            <p>Do you...</p>
+            <p>- Attempt to free them?</p>
+            <p>- Give them some food and leave?</p>
+            <p>- Ignore them and leave?</p>
+        </div>
+        <div class="actions">
+            <div class="ui approve button q5a" id="q5a1" data-val="freeThem">Free Them!</div>
+            <div class="ui approve button q5a" id="q5a2" data-val="feedThem">Leave food</div>
+            <div class="ui approve button q5a" id="q5a3" data-val="leaveThem">Leave Nothing</div>
+        </div>
+    </div>
+    <!--Good vs Evil Question-->
+    <div class="ui modal" id="q6">
+        <div class="header">I am Moradin...</div>
+        <div class="content">
+            <p>How will your Familiars see you?</p>
+        </div>
+        <div class="actions">
+            <div class="ui approve button q6a" id="q6a1" data-val="lord">As their Lord</div>
+            <div class="ui approve button q6a" id="q6a2" data-val="ally">As an Ally</div>
+            <div class="ui approve button q6a" id="q6a3" data-val="guard">As a Guardian</div>
+        </div>
+    </div>
+    <!--Law vs Chaos Question-->
+    <div class="ui modal" id="q7">
+            <div class="header">I am Majere...</div>
+            <div class="content">
+                <p>Why do you meditate?</p>
+            </div>
+            <div class="actions">
+                <div class="ui approve button q7a" id="q7a1" data-val="balance">Balance</div>
+                <div class="ui approve button q7a" id="q7a2" data-val="solitude">Solitude</div>
+                <div class="ui approve button q7a" id="q7a3" data-val="dont">I don't.</div>
+            </div>
+        </div>
+    <!--Good vs Evil Question-->
+    <div class="ui modal" id="q8">
+            <div class="header">I am Shinare...</div>
+            <div class="content">
+                <p>What riches do you seek?</p>
+            </div>
+            <div class="actions">
+                <div class="ui approve button q8a" id="q8a1" data-val="money">Monetary</div>
+                <div class="ui approve button q8a" id="q8a2" data-val="knowledge">Knowledge</div>
+                <div class="ui approve button q8a" id="q8a3" data-val="family">Family</div>
+            </div>
+        </div>
+    <!--Good vs Evil Question-->
+    <div class="ui modal" id="q9">
+            <div class="header">I am Sargonnas...</div>
+            <div class="content">
+                <p>What do you use for your Rituals?</p>
+            </div>
+            <div class="actions">
+                <div class="ui approve button q9a" id="q9a1" data-val="salt">Salt</div>
+                <div class="ui approve button q9a" id="q9a2" data-val="gold">Gold</div>
+                <div class="ui approve button q9a" id="q9a3" data-val="blood">Blood</div>
+            </div>
+        </div>
+    <!--Law vs Chaos Question-->
+    <div class="ui modal" id="q10">
+            <div class="header">I am Oghma...</div>
+            <div class="content">
+                <p>What does Mana represent for you?</p>
+            </div>
+            <div class="actions">
+                <div class="ui approve button q10a" id="q10a1" data-val="life">Life</div>
+                <div class="ui approve button q10a" id="q10a2" data-val="energy">Energy</div>
+                <div class="ui approve button q10a" id="q10a3" data-val="power">Power</div>
+            </div>
+        </div>
+        <br>
+    <!--Begin Resource Grids-->
     <div class="ui grid" id="manaGrid">
         <button class="ui button two wide column" id="manaButton">Mana</button>
         <div class="ui progress four wide column" id="manaBar">
