@@ -397,16 +397,7 @@ $(function () {
                         console.log(LawNChaos)
                         break;
                     case 'electronica':
-                        switch (LawNChaos) {
-                            case LawNChaos > 0:
-                                LawNChaos--
-                                break;
-                            case LawNChaos == 0:
-                                break;
-                            case LawNChaos < 0:
-                                LawNChaos++
-                                break;
-                        }
+                        neutralizer(LawNChaos)
                         console.log(LawNChaos)
                         break;
                     case 'punk':
@@ -426,16 +417,7 @@ $(function () {
                         console.log(GoodNEvil)
                         break;
                     case 'change':
-                        switch (GoodNEvil) {
-                            case GoodNEvil > 0:
-                                GoodNEvil--
-                                break;
-                            case GoodNEvil == 0:
-                                break;
-                            case GoodNEvil < 0:
-                                GoodNEvil++
-                                break;
-                        }
+                        neutralizer(GoodNEvil)
                         console.log(GoodNEvil)
                         break;
                     case 'domination':
@@ -455,16 +437,7 @@ $(function () {
                         console.log(GoodNEvil)
                         break;
                     case 'past':
-                        switch (GoodNEvil) {
-                            case GoodNEvil > 0:
-                                GoodNEvil--
-                                break;
-                            case GoodNEvil == 0:
-                                break;
-                            case GoodNEvil < 0:
-                                GoodNEvil++
-                                break;
-                        }
+                        neutralizer(GoodNEvil)
                         console.log(GoodNEvil)
                         break;
                     case 'choices':
@@ -484,16 +457,7 @@ $(function () {
                         console.log(LawNChaos)
                         break;
                     case 'myself':
-                        switch (LawNChaos) {
-                            case LawNChaos > 0:
-                                LawNChaos--
-                                break;
-                            case LawNChaos == 0:
-                                break;
-                            case LawNChaos < 0:
-                                LawNChaos++
-                                break;
-                        }
+                        neutralizer(LawNChaos)
                         console.log(LawNChaos)
                         break;
                     case 'noone':
@@ -513,16 +477,7 @@ $(function () {
                         console.log(LawNChaos)
                         break;
                     case 'feedThem':
-                        switch (LawNChaos) {
-                            case LawNChaos > 0:
-                                LawNChaos--
-                                break;
-                            case LawNChaos == 0:
-                                break;
-                            case LawNChaos < 0:
-                                LawNChaos++
-                                break;
-                        }
+                        neutralizer(LawNChaos)
                         console.log(LawNChaos)
                         break;
                     case 'leaveThem':
@@ -542,16 +497,7 @@ $(function () {
                         console.log(GoodNEvil)
                         break;
                     case 'ally':
-                        switch (GoodNEvil) {
-                            case GoodNEvil > 0:
-                                GoodNEvil--
-                                break;
-                            case GoodNEvil == 0:
-                                break;
-                            case GoodNEvil < 0:
-                                GoodNEvil++
-                                break;
-                        }
+                        neutralizer(GoodNEvil)
                         console.log(GoodNEvil)
                         break;
                     case 'lord':
@@ -571,16 +517,7 @@ $(function () {
                         console.log(LawNChaos)
                         break;
                     case 'solitude':
-                        switch (LawNChaos) {
-                            case LawNChaos > 0:
-                                LawNChaos--
-                                break;
-                            case LawNChaos == 0:
-                                break;
-                            case LawNChaos < 0:
-                                LawNChaos++
-                                break;
-                        }
+                        neutralizer(LawNChaos)
                         console.log(LawNChaos)
                         break;
                     case 'dont':
@@ -600,16 +537,7 @@ $(function () {
                         console.log(GoodNEvil)
                         break;
                     case 'knowledge':
-                        switch (GoodNEvil) {
-                            case GoodNEvil > 0:
-                                GoodNEvil--
-                                break;
-                            case GoodNEvil == 0:
-                                break;
-                            case GoodNEvil < 0:
-                                GoodNEvil++
-                                break;
-                        }
+                        neutralizer(GoodNEvil)
                         console.log(GoodNEvil)
                         break;
                     case 'money':
@@ -629,16 +557,7 @@ $(function () {
                         console.log(GoodNEvil)
                         break;
                     case 'salt':
-                        switch (GoodNEvil) {
-                            case GoodNEvil > 0:
-                                GoodNEvil--
-                                break;
-                            case GoodNEvil == 0:
-                                break;
-                            case GoodNEvil < 0:
-                                GoodNEvil++
-                                break;
-                        }
+                        neutralizer(GoodNEvil)
                         console.log(GoodNEvil)
                         break;
                     case 'blood':
@@ -658,16 +577,7 @@ $(function () {
                         console.log(LawNChaos)
                         break;
                     case 'energy':
-                        switch (LawNChaos) {
-                            case LawNChaos > 0:
-                                LawNChaos--
-                                break;
-                            case LawNChaos == 0:
-                                break;
-                            case LawNChaos < 0:
-                                LawNChaos++
-                                break;
-                        }
+                        neutralizer(LawNChaos)
                         console.log(LawNChaos)
                         break;
                     case 'power':
@@ -704,6 +614,17 @@ $(function () {
             })
 
 
+        
+    }
+
+    function neutralizer(aspect){
+        if(aspect > 0){
+            aspect = aspect - 1
+        } else if (aspect == 0) {
+            aspect = 0
+        } else if (aspect < 0) {
+            aspect = aspect + 1
+        }
     }
     function idlemana() {
         clearInterval(window.manaInterval)
